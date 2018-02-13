@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <title>Avalon</title>
@@ -48,32 +48,58 @@
 	</div>
 	<div id="gamePage" class="page" >
 		<header id="numberDiv" class="w3-container w3-teal"></header>
-		<button id="restartButton">中斷遊戲</button>
+		<button id="restartButton">中斷遊戲</button>        
 		<div id="restartArea"></div>
-		<div id="roleDiv"></div>
-		<div id="boardDiv"></div>
-		<div id="playerDiv" class="w3-ul w3-card-4"></div>
-		<div id="eventArea" class="w3-container">
-			<div id="chooseUserArea" class="w3-container"></div>
-			<div id="chooseVoteArea" class="w3-container"></div>
-			<div id="missionArea" class="w3-container"></div>
-			<div id="godArea" class="w3-container"></div>
-			<div id="noticeArea" class="w3-container"></div>
-			<div id="assArea" class="w3-container"></div>
-			<div id="restartArea" class="w3-container"></div>
-		</div>
-		<footer class="w3-row" id="wordArea">
-			<div id="consoleArea" class="w3-container w3-half w3-border"></div>
-			<div class="w3-container w3-half">
-				<div id="textArea" class="w3-container  w3-border"></div>
-				<div id="textInputArea" class="w3-container">
-					<input placeholder="輸入你的訊息" id="textInput"></input>
-					<button id="textButton">送出</button>
-				</div>
-			</div>
-		</footer>
-	</div>
-	<script src="js/client.js">
-</script>
+        <div id="tab1">
+            <div id="roleDiv"></div>
+            <div id="boardDiv"></div>
+        </div>
+        <div id="tab2">
+		    <div id="playerDiv" class="w3-ul w3-card-4"></div>
+		    <div id="eventArea" class="w3-container">
+			    <div id="chooseUserArea" class="w3-container"></div>
+			    <div id="chooseVoteArea" class="w3-container"></div>
+			    <div id="missionArea" class="w3-container"></div>
+			    <div id="godArea" class="w3-container"></div>
+			    <div id="noticeArea" class="w3-container"></div>
+			    <div id="assArea" class="w3-container"></div>
+			    <div id="restartArea" class="w3-container"></div>
+		    </div>
+        </div>
+        <div id="tab3">
+            <footer class="w3-row" id="wordArea">
+                <div id="consoleArea" class="w3-container w3-half w3-border"></div>
+                <div class="w3-container w3-half">
+                    <div id="textArea" class="w3-container  w3-border"></div>
+                    <div id="textInputArea" class="w3-container">
+                        <input placeholder="輸入你的訊息" id="textInput"></input>
+                        <button id="textButton">送出</button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div><button id="btn_tab1">角色/回合</button>&nbsp;|&nbsp;<button id="btn_tab2">投票</button>&nbsp;|&nbsp;<button id="btn_tab3">訊息</button></div>
+    </div>
+	<script src="js/client.js"></script>
+    <script>
+        document.getElementById('tab2').style.display = 'none';
+        document.getElementById('tab3').style.display = 'none';
+        document.getElementById("btn_tab1").addEventListener("click", function () {
+            document.getElementById('tab1').style.display = '';
+            document.getElementById('tab2').style.display = 'none';
+            document.getElementById('tab3').style.display = 'none';            
+        });
+        document.getElementById("btn_tab2").addEventListener("click", function () {
+            document.getElementById('tab1').style.display = 'none';
+            document.getElementById('tab2').style.display = '';
+            document.getElementById('tab3').style.display = 'none';
+        });
+        document.getElementById("btn_tab3").addEventListener("click", function () {
+            document.getElementById('tab1').style.display = 'none';
+            document.getElementById('tab2').style.display = 'none';
+            document.getElementById('tab3').style.display = '';
+        });
+    </script>
+
 </body>
 </html>
