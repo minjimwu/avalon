@@ -638,7 +638,18 @@
 			hide(document.getElementById("roomPage"));
 			show(document.getElementById("gamePage"));
 			document.getElementById("playerDiv").innerHTML = "" ;
+
+			//add by Jim
+			var voteArea = document.getElementById("voteArea")
+            var voteRow = document.createElement("tr") ;
+
 			for ( var i = 0 ; i < user.length ; i ++ ){
+
+			    //add by Jim
+			    var voteField = document.createElement("td") ;
+			    voteField.append(user[i])
+                voteRow.append(voteField);
+
 				var player = document.createElement("div") ;
 				player.classList.add("player");
 				player.classList.add("w3-card-4");
@@ -769,6 +780,10 @@
 				document.getElementById("playerDiv").appendChild(player);
 			}
 			addConsole("遊戲開始了！");
+
+			//add by Jim
+			voteArea.append(voteRow);
+
 			hide(document.getElementById("startButton"));
 			create = false ;
 			setRoleList(data);
@@ -812,8 +827,21 @@
 		if ( data.notify === true ){
 			notificationUser(data.console);
 		}
+
+        // Add by Jim
+		if (data.console.indexOf("成功") > -1 || data.console.indexOf("失敗") > -1 || data.console.indexOf("隊員：") > -1 ){
+		    var voteArea = document.getElementById("voteArea")
+            var voteRow = document.createElement("tr") ;
+            var voteField = document.createElement("td") ;
+            voteField.setAttribute("colspan", 10)
+            voteField.append(data.console)
+            voteRow.append(voteField);
+            voteArea.append(voteRow);
+		}
+
 		addConsole(data.console);
 	});
+
 	socket.on("god",function (data){
 		notificationUser("輪到你使用女神！");
 		var users = data.users ;
@@ -941,6 +969,27 @@
 				voteDivs[i].className = "vote-div fa fa-close" ;
 			}
 		}
+		// add by Jim
+		var voteArea = document.getElementById("voteArea")
+		var votes = data.votes ;
+		var voteRow = document.createElement("tr") ;
+
+		for ( var i = 0 ; i < votes.length ; i ++ ){
+		    var vote_token2Img ;
+            if ( votes[i] === "y" ){
+                    vote_token2Img = imgMap["yes.jpg"].cloneNode(true) ;
+                } else if ( votes[i] === "n" ){
+                    vote_token2Img = imgMap["no.jpg"].cloneNode(true) ;
+                }
+            vote_token2Img.classList.add("vote_token2Img") ;
+            var voteField = document.createElement("td") ;
+            var voteDiv = document.createElement("div") ;
+            voteDiv.classList.add("vote_token_history") ;
+            voteDiv.append(vote_token2Img);
+		    voteField.append(voteDiv);
+		    voteRow.append(voteField);
+		}
+		voteArea.append(voteRow)
 	});
 	socket.on("rearrange",function (data){
 

@@ -101,7 +101,7 @@ canvas{
 	display: inline-block;
 }
 
-.roleGuessImg , .godImg , .mission , .captionImg, .vote_token2Img , .campImg{
+.roleGuessImg , .godImg , .mission , .captionImg, .vote_token2Img , .campImg, .vote_token_history{
 	width: 100%;
 }
 
