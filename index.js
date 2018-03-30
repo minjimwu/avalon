@@ -1,4 +1,5 @@
-(function(){
+﻿(function(){
+    console.log("init");
 	var express = require('express');
 	var app = express();
 	var server = require('http').createServer(app);
@@ -380,6 +381,7 @@
 					if ( room[number].user.length < 5 ){
 						io.sockets.in(number).emit('console',{console:"人數需要五個人以上。"}) ;
 					} else {
+					    console.log("game start:" + number);
 						room[number].start = true ;
 						for ( var i = 0 ; i < room[number].role.length ; i ++ ){
 							room[number].wait.push("n") ;
@@ -512,6 +514,7 @@
 							}
 						}
 					}
+					console.log("call vote result");
 					io.sockets.in(number).emit('voteResult',{votes:v}) ;
 					if ( y > n ){
 						room[number].vote = 1 ;
@@ -543,7 +546,6 @@
 							io.sockets.in(number).emit('console',{console:"隊長正在選擇隊員。"});
 							room[number].wait[room[number].cap] = "c" ;
 
-							io.sockets.in(number).emit('voteResult',{votes:v}) ;
 							clients[room[number].id[room[number].cap]].emit("caption",{amount:room[number].amount[room[number].round-1],users:room[number].user}) ;
 						}
 					}
@@ -567,7 +569,9 @@
 					}
 				}
 				if ( room[number].missionAmount >= room[number].mission.length ){
-					io.sockets.in(number).emit('console',{console:"成功："+(room[number].missionAmount-room[number].missionResult)+"，失敗："+room[number].missionResult}) ;
+				    mission_result_summary_msg = "成功："+(room[number].missionAmount-room[number].missionResult)+"，失敗："+room[number].missionResult
+					io.sockets.in(number).emit('console',{console: mission_result_summary_msg}) ;
+					io.sockets.in(number).emit('missionResult',{console: mission_result_summary_msg + ',' }) ;
 					if ( room[number].round === 4 && room[number].user.length >= 7 ){
 						if ( room[number].missionResult < 2 ){
 							room[number].successAmount ++ ;
