@@ -1,6 +1,6 @@
 (function(){
 	//var socket = io.connect('http://avalon-test.herokuapp.com/');
-	var socket = io.connect('localhost:80');
+	var socket = io.connect('pi-avalon.azurewebsites.net:80');
 	var gb = null 
 	var roomNumber = null ;
 	var role = null ;
