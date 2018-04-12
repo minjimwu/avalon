@@ -177,7 +177,7 @@
 						var index = room[number].id.indexOf(socket.id) ;
 						if ( index !== -1 ){
 							var user = room[number].user[index] ;
-							io.sockets.in(number).emit('console',{console:user+" 斷線，請等候回復。" , notify : true }) ;
+							io.sockets.in(number).emit('console',{console:user+" 斷線，請等候回復。id:" + socket.id , notify : true }) ;
 							if ( room[number].disconnectCount === room[number].user.length ){
 								delete room[number] ;
 								getRoomList();

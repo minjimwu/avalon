@@ -1,6 +1,6 @@
 (function(){
-	//var socket = io.connect('http://avalon-test.herokuapp.com/');
-	var socket = io.connect('localhost:80');
+	var socket = io.connect('http://pi-avalon.azurewebsites.net/');
+	//var socket = io.connect('localhost:8080');
 	var gb = null 
 	var roomNumber = null ;
 	var role = null ;
@@ -61,7 +61,11 @@
 	})
 
 	document.getElementById("recoverButton").addEventListener("click",function(){
-		if ( localStorage.socketId !== undefined ){
+	    recover_id = document.getElementById("recover_id").value
+	    if (recover_id !== ""){
+	        socket.emit("recover",{id:recover_id });
+	    }
+		else if ( localStorage.socketId !== undefined ){
 			socket.emit("recover",{id:localStorage.socketId });
 		} else {
 			alert("沒有紀錄！") ;
