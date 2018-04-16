@@ -833,7 +833,7 @@
 		}
 
         // Add by Jim
-		if (data.console.indexOf("成功") > -1 || data.console.indexOf("失敗") > -1 || data.console.indexOf("隊員：") > -1 ){
+		if (data.console.indexOf("成功") > -1 || data.console.indexOf("失敗") > -1 || data.console.indexOf("隊員：") > -1 || data.console.indexOf("隊長是 ") > -1 ){
 		    var voteArea = document.getElementById("voteArea")
             var voteRow = document.createElement("tr") ;
             var voteField = document.createElement("td") ;
