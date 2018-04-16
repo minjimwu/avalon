@@ -43,6 +43,7 @@
 	};
 
 	socket.on("save",function (data){
+	    document.getElementById("storage_id").value = data.id
 		localStorage.socketId = data.id ;
 	})
 

@@ -82,38 +82,35 @@
 		<div id="tab4">
                 <table id="voteArea"></table>
         </div>
+		<div id="tab5">
+			<br/>
+			<div><input id="storage_id" /></div>
+			<br/>
+		</div>
         <div><button id="btn_tab1">角色/回合</button>&nbsp;|&nbsp;<button id="btn_tab2">投票</button> | <button id="btn_tab3">訊息</button>&nbsp;|&nbsp;<button id="btn_tab4">歷史</button></div>
+		<br/>
+		<div><button id="btn_tab5">系統</button></div>
 
     </div>
 	<script src="js/client.js"></script>
     <script>
-        document.getElementById('tab1').style.display = 'none';
-        document.getElementById('tab3').style.display = 'none';
-        document.getElementById('tab4').style.display = 'none';
-        document.getElementById("btn_tab1").addEventListener("click", function () {
-            document.getElementById('tab1').style.display = '';
-            document.getElementById('tab2').style.display = 'none';
-            document.getElementById('tab3').style.display = 'none';
-            document.getElementById('tab4').style.display = 'none';
-        });
-        document.getElementById("btn_tab2").addEventListener("click", function () {
-            document.getElementById('tab1').style.display = 'none';
-            document.getElementById('tab2').style.display = '';
-            document.getElementById('tab3').style.display = 'none';
-            document.getElementById('tab4').style.display = 'none';
-        });
-        document.getElementById("btn_tab3").addEventListener("click", function () {
-            document.getElementById('tab1').style.display = 'none';
-            document.getElementById('tab2').style.display = 'none';
-            document.getElementById('tab3').style.display = '';
-            document.getElementById('tab4').style.display = 'none';
-        });
-        document.getElementById("btn_tab4").addEventListener("click", function () {
-            document.getElementById('tab1').style.display = 'none';
-            document.getElementById('tab2').style.display = 'none';
-            document.getElementById('tab3').style.display = 'none';
-            document.getElementById('tab4').style.display = '';
-        });
+    	var tab_ids = ["tab1","tab2","tab3","tab4","tab5"]
+    	var hide_tab = function(){
+    		tab_ids.forEach(function(value) {
+    			document.getElementById(value).style.display = 'none';
+			});
+    	}
+    	var show_tab = function(tab_id){
+    		 document.getElementById(tab_id).style.display = '';
+    	}
+		hide_tab();
+		show_tab("tab1");
+		tab_ids.forEach(function(value) {
+			document.getElementById("btn_" + value).addEventListener("click", function () {
+				hide_tab();
+				show_tab(value);
+			});
+		})
     </script>
 
 </body>
