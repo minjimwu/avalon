@@ -112,3 +112,18 @@ canvas{
 	width: 10vw ;
 	max-width: 30px ;
 }
+#footer
+{
+    height:60px;
+    background-color:#D9D9D9;
+    margin-top:20px;
+    width:100%;
+    bottom:0;
+    position:fixed;
+    text-align: center;
+}
+#footer button
+{
+    height: 80%;
+    margin: 5px;
+}

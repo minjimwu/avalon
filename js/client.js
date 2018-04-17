@@ -1,7 +1,7 @@
 (function(){
 
 	var socket = io.connect('http://pi-avalon.azurewebsites.net/');
-	
+	//var socket = io.connect('localhost:80');
 
 	var gb = null 
 	var roomNumber = null ;
@@ -212,6 +212,14 @@
 			socket.emit("join",{user:userName,number:roomNumber,password:document.getElementById("passwordJoin").value}) ;
 		}
 	});
+
+	document.getElementById("btn_copy_storage_id").addEventListener("click",function(){
+		var copyText = document.getElementById("storage_id");
+		copyText.select();
+		document.execCommand("Copy");
+		alert("Copied the text: " + copyText.value);
+	});
+
 	socket.on("godResult",function (data){
 		notificationUser("女神結果出來了！");
 		document.getElementById("godArea").innerHTML = "" ;
