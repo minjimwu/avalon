@@ -1,6 +1,8 @@
 (function(){
+
 	var socket = io.connect('http://pi-avalon.azurewebsites.net/');
-	//var socket = io.connect('localhost:8080');
+	
+
 	var gb = null 
 	var roomNumber = null ;
 	var role = null ;
